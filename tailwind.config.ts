@@ -63,6 +63,9 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      fontFamily: {
+        mono: ['Consolas', 'Monaco', 'Courier New', 'monospace'],
+      },
       keyframes: {
         "accordion-down": {
           from: {
@@ -80,10 +83,30 @@ export default {
             height: "0",
           },
         },
+        "pulse-glow": {
+          "0%, 100%": {
+            boxShadow: "0 0 5px hsl(var(--neon-cyan) / 0.4)",
+          },
+          "50%": {
+            boxShadow: "0 0 20px hsl(var(--neon-cyan) / 0.8)",
+          },
+        },
+        "slide-in": {
+          from: {
+            opacity: "0",
+            transform: "translateX(20px)",
+          },
+          to: {
+            opacity: "1",
+            transform: "translateX(0)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "pulse-glow": "pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        "slide-in": "slide-in 0.3s ease-out",
       },
     },
   },

@@ -1,11 +1,13 @@
-import { Sliders } from 'lucide-react';
+import { Sliders, Video, VideoOff } from 'lucide-react';
 
 interface ConfidenceSliderProps {
   value: number;
   onChange: (value: number) => void;
+  isWebcamOn: boolean;
+  onWebcamToggle: () => void;
 }
 
-const ConfidenceSlider = ({ value, onChange }: ConfidenceSliderProps) => {
+const ConfidenceSlider = ({ value, onChange, isWebcamOn, onWebcamToggle }: ConfidenceSliderProps) => {
   return (
     <div className="glass-card rounded-xl p-4">
       <div className="flex items-center gap-2 mb-4">
@@ -68,6 +70,33 @@ const ConfidenceSlider = ({ value, onChange }: ConfidenceSliderProps) => {
         
         <p className="text-xs text-muted-foreground">
           Detections below {value}% confidence will be filtered out
+        </p>
+      </div>
+      
+      {/* Webcam Toggle Button */}
+      <div className="mt-4 pt-4 border-t border-border">
+        <button
+          onClick={onWebcamToggle}
+          className={`w-full py-3 px-4 rounded-lg font-semibold text-sm uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 ${
+            isWebcamOn
+              ? 'bg-accent/20 text-accent border-2 border-accent hover:bg-accent/30'
+              : 'bg-muted text-muted-foreground border-2 border-border hover:bg-muted/80'
+          }`}
+        >
+          {isWebcamOn ? (
+            <>
+              <Video className="w-5 h-5" />
+              Webcam On
+            </>
+          ) : (
+            <>
+              <VideoOff className="w-5 h-5" />
+              Webcam Off
+            </>
+          )}
+        </button>
+        <p className="text-xs text-muted-foreground mt-2 text-center">
+          {isWebcamOn ? 'Live camera feed active' : 'Click to enable camera'}
         </p>
       </div>
     </div>

@@ -42,6 +42,7 @@ const Index = () => {
   const [confidenceThreshold, setConfidenceThreshold] = useState(75);
   const [fps, setFps] = useState(28);
   const [inferenceTime, setInferenceTime] = useState(35);
+  const [isWebcamOn, setIsWebcamOn] = useState(false);
 
   // Simulate new detections every 2-4 seconds
   useEffect(() => {
@@ -98,6 +99,7 @@ const Index = () => {
           <LiveFeed 
             detections={detections} 
             confidenceThreshold={confidenceThreshold}
+            isWebcamOn={isWebcamOn}
           />
         </div>
 
@@ -127,6 +129,8 @@ const Index = () => {
           <ConfidenceSlider
             value={confidenceThreshold}
             onChange={setConfidenceThreshold}
+            isWebcamOn={isWebcamOn}
+            onWebcamToggle={() => setIsWebcamOn(!isWebcamOn)}
           />
         </div>
       </div>

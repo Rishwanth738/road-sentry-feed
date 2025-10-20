@@ -44,38 +44,8 @@ const Index = () => {
   const [inferenceTime, setInferenceTime] = useState(35);
   const [isWebcamOn, setIsWebcamOn] = useState(false);
 
-  // Simulate new detections every 2-4 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const newDetection = generateRandomDetection();
-      
-      setDetections((prev) => {
-        // Keep only last 5 detections
-        const updated = [...prev, newDetection].slice(-5);
-        return updated;
-      });
-
-      // Add to log
-      const now = new Date();
-      const timestamp = now.toLocaleTimeString('en-US', { hour12: false });
-      
-      setLogEntries((prev) => [
-        ...prev,
-        {
-          id: newDetection.id,
-          timestamp,
-          hazard: newDetection.label,
-          confidence: newDetection.confidence,
-        },
-      ]);
-
-      // Simulate varying performance metrics
-      setFps(26 + Math.floor(Math.random() * 6)); // 26-32 FPS
-      setInferenceTime(30 + Math.floor(Math.random() * 15)); // 30-45 ms
-    }, 2000 + Math.random() * 2000); // 2-4 seconds
-
-    return () => clearInterval(interval);
-  }, []);
+  // Removed automatic detection simulation
+  // Detection logic can be added here when connecting to real AI model
 
   return (
     <div className="min-h-screen bg-background p-4 md:p-6">
